@@ -44,7 +44,8 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        store.load()?.let { (account, password) ->
+        val saved = store.load()
+        saved?.let { (account, password) ->
             binding.account.setText(account)
             binding.password.setText(password)
         }
@@ -59,6 +60,12 @@ class MainActivity : AppCompatActivity() {
             binding.account.text = null
             binding.password.text = null
             Toast.makeText(this, R.string.cleared, Toast.LENGTH_SHORT).show()
+        }
+
+        // 打开 App 时已保存过账号密码则直接登录；旋转屏幕等重建界面时不重复触发
+        if (saved != null && savedInstanceState == null) {
+            appendLog("已保存账号，自动登录")
+            login(clearLog = false)
         }
     }
 
@@ -102,7 +109,7 @@ class MainActivity : AppCompatActivity() {
         binding.wifiStatus.setTextColor(ContextCompat.getColor(this, color))
     }
 
-    private fun login() {
+    private fun login(clearLog: Boolean = true) {
         if (!binding.loginButton.isEnabled) return
         val account = binding.account.text?.toString()?.trim().orEmpty()
         val password = binding.password.text?.toString().orEmpty()
@@ -113,7 +120,7 @@ class MainActivity : AppCompatActivity() {
         store.save(account, password)
 
         setBusy(true)
-        binding.log.text = null
+        if (clearLog) binding.log.text = null
         binding.result.text = null
         lifecycleScope.launch {
             val result = withContext(Dispatchers.IO) { performLogin(account, password) }

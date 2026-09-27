@@ -3,17 +3,18 @@
 韩师校园网一键登录 App，Kotlin 编写。连上校园网 WiFi 后打开 App，点一下「登录」即可完成认证。
 
 - 账号密码输入一次后自动记住（Android Keystore 加密保存）
-- 不常驻后台、无静默登录，每次由用户手动点击
+- 已保存账号时，打开 App 即自动登录，无需再点按钮
+- 不常驻后台、不在后台静默登录，只在打开 App 或点击「登录」时认证
 - **登录请求强制通过 WiFi 发送**，不会因为 WiFi 暂时不能上网而被系统改走移动数据
 
-另有电脑版（HSTC-campus-login），两者的认证流程一致。
+本项目的认证流程移植自电脑版 [HSTC-campus-login](https://github.com/Agoin-314260/HSTC-campus-login)，详见文末「致谢」。
 
 ## 使用
 
 1. 安装 `HSTC-CampusLogin-v<版本号>.apk`（Android 8.0 及以上）
 2. 连接校园网 WiFi（手机提示“无法上网 / 需要登录”时不用管，也不用关移动数据）
 3. 打开 App，输入账号（12 位）和密码，点「登录」
-4. 以后每次连上校园网，打开 App 点「登录」即可（账号密码已记住）
+4. 以后每次连上校园网，打开 App 即自动登录（如需重试，点「登录」）；点「清除已保存的账号」可取消自动登录
 
 界面顶部会实时显示 WiFi 状态：未连接 / 已连接未认证 / 已可上网；下方「登录日志」显示每一步的执行情况，便于排查问题。
 
@@ -36,7 +37,7 @@ IP、网关直接从这张 WiFi 的 `LinkProperties` 读取，保证填进认证
 
 ## 认证流程
 
-与电脑版 `login_core.py` 一致（见 `CampusLoginClient.kt`）：
+移植自电脑版 [HSTC-campus-login](https://github.com/Agoin-314260/HSTC-campus-login) 的 `login_core.py`（见 `CampusLoginClient.kt`）：
 
 1. 通过 WiFi 访问 `http://rz.hstc.edu.cn/`，3 秒内返回 200 视为在校园网
 2. 把 `1|0|IP||MAC||网关|接入点|` Base64 后作为门户 `state` 参数，门户地址整体作为 CAS 的 `service` 参数
@@ -92,6 +93,12 @@ keytool -genkeypair -v -keystore keystore/campuslogin-release.jks -storetype PKC
 | `CredentialStore.kt` | Keystore AES-GCM 加密保存账号密码 |
 | `MemoryCookieJar.kt` | 登录期间的内存 Cookie（保持 CAS 会话） |
 
+## 致谢
+
+- 校园网认证流程（门户参数构造、CAS 登录、RSA 密码加密、结果判定）参考并移植自 [Agoin-314260/HSTC-campus-login](https://github.com/Agoin-314260/HSTC-campus-login)（MIT License），感谢原作者的分析与开源。
+- 本项目是独立开发的安卓移植版，与原项目作者无隶属关系，也不是其官方手机版；安卓版的问题请勿反馈到原项目。
+- 本项目与学校官方无关，仅供学习交流使用。
+
 ## 许可
 
-MIT
+[MIT License](LICENSE)。本项目包含源自 [HSTC-campus-login](https://github.com/Agoin-314260/HSTC-campus-login) 的实现，依据其 MIT 许可保留了原作者的版权声明，见 [LICENSE](LICENSE)。
