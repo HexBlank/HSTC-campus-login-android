@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- WiFi 扇形图标，位于自适应图标 108dp 画布中央的 66dp 安全区内 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:translateX="30"
+        android:translateY="25">
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M24,40.5c1.93,0 3.5,1.57 3.5,3.5S25.93,47.5 24,47.5 20.5,45.93 20.5,44 22.07,40.5 24,40.5zM24,30.5c4.14,0 7.9,1.68 10.61,4.39l-3.54,3.54C29.26,36.62 26.76,35.5 24,35.5s-5.26,1.12 -7.07,2.93l-3.54,-3.54C16.1,32.18 19.86,30.5 24,30.5zM24,20.5c6.9,0 13.15,2.8 17.68,7.32l-3.54,3.54C34.52,27.74 29.52,25.5 24,25.5s-10.52,2.24 -14.14,5.86l-3.54,-3.54C10.85,23.3 17.1,20.5 24,20.5zM24,10.5c9.67,0 18.42,3.92 24.75,10.25l-3.54,3.54C39.79,18.87 32.29,15.5 24,15.5S8.21,18.87 2.79,24.29L-0.75,20.75C5.58,14.42 14.33,10.5 24,10.5z" />
+    </group>
+</vector>

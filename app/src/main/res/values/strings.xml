@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">校园网登录</string>
+    <string name="title">校园网登录</string>
+    <string name="hint_account">账号（12 位学号/工号）</string>
+    <string name="hint_password">密码</string>
+    <string name="action_login">登录</string>
+    <string name="action_logging_in">登录中…</string>
+    <string name="action_clear">清除已保存的账号</string>
+    <string name="wifi_checking">正在检测 WiFi…</string>
+    <string name="wifi_none">未连接 WiFi，请先连接校园网 WiFi</string>
+    <string name="wifi_unvalidated">已连接 WiFi（未认证，暂时无法上网）</string>
+    <string name="wifi_validated">已连接 WiFi（可以上网）</string>
+    <string name="log_title">登录日志</string>
+    <string name="error_empty">请输入账号和密码</string>
+    <string name="cleared">已清除保存的账号密码</string>
+</resources>

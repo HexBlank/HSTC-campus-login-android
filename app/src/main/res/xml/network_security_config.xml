@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  校园网环境检测地址 rz.hstc.edu.cn 和认证门户 192.168.2.34:801 只提供 HTTP，
+  CAS 登录成功后会从 HTTPS 302 跳回 HTTP 门户，必须放行明文流量，否则认证最后一步会被系统拦截。
+  本应用只访问校园网认证相关地址，不涉及其他站点。
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

@@ -1,0 +1,26 @@
+# Gradle / Android Studio
+.gradle/
+build/
+local.properties
+.idea/
+*.iml
+.DS_Store
+captures/
+.externalNativeBuild/
+.cxx/
+
+# 签名文件（严禁提交）
+keystore/
+*.jks
+*.keystore
+keystore.properties
+
+# 发布产物
+dist/
+*.apk
+*.aab
+
+# AI 协作文档（仅本地使用）
+CLAUDE.md
+AGENTS.md
+.claude/
